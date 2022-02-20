@@ -76,9 +76,6 @@ RUN rm -rf /etc/apt/sources.list && \
 	openvpn \
 	ffmpeg \
 	screen \
-	openssh \
-	openssh-server \
-	samba \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
 #MATE Desktop
@@ -129,18 +126,11 @@ RUN rm -rf /etc/apt/sources.list && \
 	apt update && \
 	apt-get install -y powershell
 #openssh
-	FROM ubuntu:latest
-
-RUN apt update && apt install  openssh-server sudo -y
-
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
-
-RUN  echo 'test:test' | chpasswd
-
-RUN service ssh start
-
-EXPOSE 22
-
+	apt update && apt install  openssh-server sudo -y
+	useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
+	echo 'test:test' | chpasswd
+	service ssh start
+	
 CMD ["/usr/sbin/sshd","-D"]
 
 ENTRYPOINT ["supervisord", "-c"]
