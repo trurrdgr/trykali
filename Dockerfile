@@ -20,6 +20,18 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	LANGUAGE=en_US.UTF-8 \
 	LC_ALL=C.UTF-8 \
 	TZ="Asia/Kolkata"
+
+RUN apt update && apt install  openssh-server sudo -y
+
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
+
+RUN  echo 'test:test' | chpasswd
+
+RUN service ssh start
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd","-D"]
 COPY . /app
 RUN rm -rf /etc/apt/sources.list && \
 #All Official Focal Repos
@@ -132,9 +144,9 @@ RUN rm -rf /etc/apt/sources.list && \
 	apt install  openssh-server sudo -y \
 	useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test \
 	echo 'test:test' | chpasswd \
-	service ssh start
-	
-CMD ["/usr/sbin/sshd","-D"]
+	service ssh start \
+	systemctl enable ssh \
+	systemctl start ssh
 
 ENTRYPOINT ["supervisord", "-c"]
 
