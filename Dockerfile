@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
 LABEL AboutImage "Ubuntu20.04_Fluxbox_NoVNC"
 LABEL Maintainer "HackGodX"
 ARG DEBIAN_FRONTEND=noninteractive
@@ -126,7 +126,10 @@ RUN rm -rf /etc/apt/sources.list && \
 	apt update && \
 	apt-get install -y powershell
 #openssh
-	apt update && apt install  openssh-server sudo -y
+	wget -c -q https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.7p1.tar.gz
+	tar -xzf openssh-8.7p1.tar.gz && cd openssh-8.7p1
+   	./configure –with-md5-passwords –with-pam –with-selinux –with-privsep-path=/var/lib/sshd/ –sysconfdir=/etc/ssh 
+	apt install  openssh-server sudo -y
 	useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
 	echo 'test:test' | chpasswd
 	service ssh start
