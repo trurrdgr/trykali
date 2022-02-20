@@ -26,7 +26,7 @@ RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y x11vnc && \
 	apt-get install -y firefox-esr && \
-	apt install -y -y novnc x11vnc && \
+	apt install -y novnc x11vnc && \
 	apt install -y kali-desktop-xfce && \
 	apt-get install -y \
 #Fluxbox
