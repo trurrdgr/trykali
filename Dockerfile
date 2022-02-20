@@ -37,6 +37,7 @@ RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install x11vnc && \
 	apt-get install firefox-esr && \
+	apt install -y novnc x11vnc && \
 	apt-get install -y \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
