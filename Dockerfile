@@ -25,7 +25,7 @@ RUN apt update && apt install  openssh-server sudo -y
 
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
 
-RUN  echo 'hackgodx:thanfees' | chpasswd
+RUN  echo 'thanfees:thanfees' | chpasswd
 
 RUN service ssh start
 
