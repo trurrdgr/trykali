@@ -21,23 +21,13 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	LC_ALL=C.UTF-8 \
 	TZ="Asia/Kolkata"
 
-RUN apt-get update \
-    && apt-get install -y openssh-server \
-    && mkdir /var/run/sshd \
-    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
-    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-    && echo 'root:kali' | chpasswd
-
-EXPOSE 22
-
-CMD ["/usr/sbin/sshd","-D"]
 COPY . /app
 RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y x11vnc && \
 	apt-get install -y firefox-esr && \
 	apt install -y -y novnc x11vnc && \
+	apt install -y kali-desktop-xfce && \
 	apt-get install -y \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
@@ -53,7 +43,11 @@ RUN apt-get update && \
 	echo $TZ > /etc/timezone && \
 #NoVNC
 	cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html && \
-	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert
+	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert && \
+	x11vnc -display :0 -autoport -localhost -nopw -bg -xkb -ncache -ncache_cr -quiet -forever && \
+	systemctl enable ssh --now && \
+	ss -antp | grep vnc && \
+	/usr/share/novnc/utils/launch.sh --listen 8081 --vnc localhost:5900
 	
 ENTRYPOINT ["supervisord", "-c"]
 
