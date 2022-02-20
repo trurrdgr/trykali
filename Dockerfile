@@ -1,4 +1,4 @@
-FROM kali-rolling:latest
+FROM kalilinux/kali-last-release
 LABEL AboutImage "Ubuntu20.04_Fluxbox_NoVNC"
 LABEL Maintainer "HackGodX"
 ARG DEBIAN_FRONTEND=noninteractive
