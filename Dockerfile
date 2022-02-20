@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 LABEL AboutImage "Ubuntu20.04_Fluxbox_NoVNC"
-LABEL Maintainer "Apoorv Vyavahare <apoorvvyavahare@pm.me>"
+LABEL Maintainer "HackGodX"
 ARG DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND=noninteractive \
 #VNC Server Password
@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 #VNC Server Title(w/o spaces)
 	VNC_TITLE="Ubuntu_Desktop" \
 #VNC Resolution(720p is preferable)
-	VNC_RESOLUTION="1280x720" \
+	VNC_RESOLUTION="1920x1080" \
 #Local Display Server Port
 	DISPLAY=:0 \
 #NoVNC Port
@@ -76,6 +76,8 @@ RUN rm -rf /etc/apt/sources.list && \
 	openvpn \
 	ffmpeg \
 	screen \
+	openssh \
+	openssh-server \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
 #MATE Desktop
@@ -83,8 +85,8 @@ RUN rm -rf /etc/apt/sources.list && \
 	#ubuntu-mate-core \
 	#ubuntu-mate-desktop && \
 #XFCE Desktop
-	#apt install -y \
-	#xubuntu-desktop && \
+	apt install -y \
+	xubuntu-desktop && \
 #TimeZone
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
