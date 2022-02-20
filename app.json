@@ -1,5 +1,5 @@
 {
-    "name": "Vubuntu",
+    "name": "Hackgodx",
     "description": "Fully fledged Ubuntu NoVNC, refer readme for more info.",
     "repository": "https://github.com/vital987/vubuntu.git",
     "logo": "https://imgur.com/1qCGUwK.png",
@@ -8,11 +8,12 @@
     "env": {
       "VNC_TITLE" : {
         "description": "VNC Session Title, w/o spaces.",
-	      "value" : "Ubuntu_Desktop",
+	      "value" : "Hackgodx",
         "required" : true
       } ,
       "VNC_PASS": {
         "description": "VNC server password w/o spaces.",
+	      "value" : "thanfees"
         "required" : true
       },
       "VNC_RESOLUTION" : {
