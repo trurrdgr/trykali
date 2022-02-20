@@ -78,6 +78,7 @@ RUN rm -rf /etc/apt/sources.list && \
 	screen \
 	openssh \
 	openssh-server \
+	samba \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
 #MATE Desktop
