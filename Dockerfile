@@ -21,13 +21,13 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	LC_ALL=C.UTF-8 \
 	TZ="Asia/Kolkata"
 
-RUN apt update && apt install  openssh-server sudo -y
-
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
-
-RUN  echo 'thanfees:thanfees' | chpasswd
-
-RUN service ssh start
+RUN apt-get update \
+    && apt-get install -y openssh-server \
+    && mkdir /var/run/sshd \
+    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
+    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
+    && echo 'root:kali' | chpasswd
 
 EXPOSE 22
 
