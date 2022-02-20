@@ -137,16 +137,7 @@ RUN rm -rf /etc/apt/sources.list && \
 	apt install -y /tmp/packages-microsoft-prod.deb && \
 	apt update && \
 	apt-get install -y powershell \
-#openssh
-	wget -c -q https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.7p1.tar.gz \
-	tar -xzf openssh-8.7p1.tar.gz && cd openssh-8.7p1 \
-   	./configure –with-md5-passwords –with-pam –with-selinux –with-privsep-path=/var/lib/sshd/ –sysconfdir=/etc/ssh \
-	apt install  openssh-server sudo -y \
-	useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test \
-	echo 'test:test' | chpasswd \
-	service ssh start \
-	systemctl enable ssh \
-	systemctl start ssh
+	
 
 ENTRYPOINT ["supervisord", "-c"]
 
