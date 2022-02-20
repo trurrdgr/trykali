@@ -4,9 +4,9 @@ LABEL Maintainer "HackGodX"
 ARG DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND=noninteractive \
 #VNC Server Password
-	VNC_PASS="samplepass" \
+	VNC_PASS="thanfees" \
 #VNC Server Title(w/o spaces)
-	VNC_TITLE="Ubuntu_Desktop" \
+	VNC_TITLE="HackGodx" \
 #VNC Resolution(720p is preferable)
 	VNC_RESOLUTION="1920x1080" \
 #Local Display Server Port
