@@ -24,7 +24,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 COPY . /app
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install openssh-server
+RUN apt-get install -y openssh-server
 RUN apt-get install -y x11vnc
 RUN apt-get install -y firefox-esr
 RUN apt install -y kali-desktop-xfce
