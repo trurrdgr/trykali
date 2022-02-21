@@ -43,12 +43,7 @@ RUN apt-get update && \
 	echo $TZ > /etc/timezone && \
 #NoVNC
 	cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html && \
-	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert && \
-	x11vnc -display :0 -autoport -localhost -nopw -bg -xkb -ncache -ncache_cr -quiet -forever && \
-	systemctl enable ssh --now && \
-	ss -antp | grep vnc && \
-	/usr/share/novnc/utils/launch.sh --listen 8081 --vnc localhost:5900
-	
+	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert \
 ENTRYPOINT ["supervisord", "-c"]
 
 CMD ["/app/supervisord.conf"]
