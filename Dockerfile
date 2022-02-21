@@ -22,13 +22,12 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	TZ="Asia/Kolkata"
 
 COPY . /app
-RUN apt-get update && \
-	apt-get upgrade -y && \
-	apt-get install -y x11vnc && \
-	apt-get install -y firefox-esr && \
-	apt install -y novnc x11vnc && \
-	apt install -y kali-desktop-xfce && \
-	apt-get install -y \
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y x11vnc
+RUN apt-get install -y firefox-esr
+RUN apt install -y kali-desktop-xfce
+RUN apt-get install -y \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
 #MATE Desktop
@@ -43,7 +42,8 @@ RUN apt-get update && \
 	echo $TZ > /etc/timezone && \
 #NoVNC
 	cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html && \
-	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert \
+	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert
+	
 ENTRYPOINT ["supervisord", "-c"]
 
 CMD ["/app/supervisord.conf"]
