@@ -1,4 +1,4 @@
-# Ubuntu-Desktop-noVNC-Heroku-VPS
+# TRYING KALI ON HERKO
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/trurrdgr/trykali)
 
