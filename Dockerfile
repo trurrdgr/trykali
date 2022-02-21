@@ -56,7 +56,7 @@ RUN apt-get install -y \
 	default-jdk \
 	clojure \
 	php \
-	firefox \
+	firefox-esr \
 	gnome-terminal \
 	gnome-calculator \
 	gnome-system-monitor \
