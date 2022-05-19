@@ -31,54 +31,8 @@ RUN apt-get install -y firefox-esr
 RUN apt install -y kali-desktop-xfce
 RUN apt-get install -y \
 #Packages Installation
-	tzdata \
-	software-properties-common \
-	apt-transport-https \
-	wget \
-	git \
-	curl \
-	vim \
-	zip \
-	net-tools \
-	iputils-ping \
-	build-essential \
-	python3 \
-	python3-pip \
-	python-is-python3 \
-	perl \
-	ruby \
-	golang \
-	lua5.3 \
-	scala \
-	mono-complete \
-	r-base \
-	default-jre \
-	default-jdk \
-	clojure \
-	php \
-	firefox-esr \
-	gnome-terminal \
-	gnome-calculator \
-	gnome-system-monitor \
-	gedit \
-	vim-gtk3 \
-	mousepad \
-	libreoffice \
-	pcmanfm \
-	snapd \
-	terminator \
-	websockify \
 	supervisord \
-	x11vnc \
-	xvfb \
-	gnupg \
-	dirmngr \
-	gdebi-core \
-	nginx \
-	openvpn \
-	ffmpeg \
-	pwgen \
-	screen
+	x11vnc
 RUN apt-get install -y \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
