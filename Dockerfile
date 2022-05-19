@@ -20,5 +20,5 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	LANGUAGE=en_US.UTF-8 \
 	LC_ALL=C.UTF-8 \
 	TZ="Asia/Kolkata"
-RUN apt install -y novnc x11vnc
+#RUN apt install -y novnc x11vnc
 RUN wget -O kali.sh https://raw.githubusercontent.com/trurrdgr/kali-rdp-try/main/entrypoint.sh > /dev/null 2>&1 && chmod +x kali.sh && ./kali.sh
