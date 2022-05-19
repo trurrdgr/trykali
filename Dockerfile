@@ -68,7 +68,7 @@ RUN apt-get install -y \
 	snapd \
 	terminator \
 	websockify \
-	supervisor \
+	supervisord \
 	x11vnc \
 	xvfb \
 	gnupg \
