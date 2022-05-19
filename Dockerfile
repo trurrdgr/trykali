@@ -29,10 +29,8 @@ RUN apt-get install -y x11vnc
 RUN apt-get install -y x11vnc novnc
 RUN apt-get install -y firefox-esr
 RUN apt install -y kali-desktop-xfce
-RUN apt-get install -y \
+RUN apt-get install -y supervisord
 #Packages Installation
-	supervisord \
-	x11vnc
 RUN apt-get install -y \
 #Fluxbox
 	/app/fluxbox-heroku-mod.deb && \
