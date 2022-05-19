@@ -29,7 +29,7 @@ RUN apt-get install -y x11vnc
 RUN apt-get install -y x11vnc novnc
 RUN apt-get install -y firefox-esr
 RUN apt install -y kali-desktop-xfce
-RUN apt-get install -y supervisord
+RUN apt-get install -y supervisor
 #Packages Installation
 RUN apt-get install -y \
 #Fluxbox
