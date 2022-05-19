@@ -23,4 +23,4 @@ ENV DEBIAN_FRONTEND=noninteractive \
 #RUN apt install -y novnc x11vnc
 ADD install.sh /
 RUN chmod +x /install.sh
-CMD /entrypoint.sh
+CMD /install.sh
