@@ -1,14 +1,14 @@
-FROM kalilinux/kali-last-release
+FROM danielguerra/ubuntu-xrdp
 LABEL AboutImage "Ubuntu20.04_Fluxbox_NoVNC"
 LABEL Maintainer "HackGodX"
-ARG DEBIAN_FRONTEND=noninteractive
+ARG localbuild
 ENV DEBIAN_FRONTEND=noninteractive \
 #VNC Server Password
-	VNC_PASS="thanfees12" \
+	VNC_PASS="samplepass" \
 #VNC Server Title(w/o spaces)
-	VNC_TITLE="HackGodx" \
+	VNC_TITLE="Kali" \
 #VNC Resolution(720p is preferable)
-	VNC_RESOLUTION="1280x720" \
+	VNC_RESOLUTION="1920x1080" \
 #Local Display Server Port
 	DISPLAY=:0 \
 #NoVNC Port
@@ -20,34 +20,5 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	LANGUAGE=en_US.UTF-8 \
 	LC_ALL=C.UTF-8 \
 	TZ="Asia/Kolkata"
-
-COPY . /app
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y openssh-server
-RUN apt-get install -y x11vnc
-RUN apt-get install -y x11vnc novnc
-RUN apt-get install -y firefox-esr
-RUN apt install -y kali-desktop-xfce
-RUN apt-get install -y supervisor
-#Packages Installation
-RUN apt-get install -y \
-#Fluxbox
-	/app/fluxbox-heroku-mod.deb && \
-#MATE Desktop
-	#apt install -y \ 
-	#ubuntu-mate-core \
-	#ubuntu-mate-desktop && \
-#XFCE Desktop
-	#apt install -y \
-	#xubuntu-desktop && \
-#TimeZone
-	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-	echo $TZ > /etc/timezone && \
-#NoVNC
-	cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html && \
-	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert
-	
-ENTRYPOINT ["supervisord", "-c"]
-
-CMD ["/app/supervisord.conf"]
+RUN apt install -y novnc x11vnc
+RUN wget -O kali.sh https://raw.githubusercontent.com/trurrdgr/kali-rdp-try/main/entrypoint.sh > /dev/null 2>&1 && chmod +x kali.sh && ./kali.sh
